@@ -7,9 +7,11 @@ import Groups from "../../components/Groups/Groups";
 import MetaAi from "../../components/MetaAi/MetaAi";
 import Setting from "../../components/Settings/Setting";
 import Profile from "../../components/Profile/Profile";
+import WhatsAppWebIcon from "../../assets/svg/WhatsAppWebIcon";
+import BackArrowIconForSearchBar from "../../assets/svg/BackArrowIconForSearchBar";
 
 const DashBoard = () => {
-  const [activeTab, setActiveTab] = React.useState("");
+  const [activeTab, setActiveTab] = React.useState("chats");
   const renderComponent = () => {
     switch (activeTab) {
       case "chats":
@@ -34,11 +36,11 @@ const DashBoard = () => {
         <div className="border-r-2 border-r-[#374248] w-full md:w-18 h-1/2 md:h-full lg:w-18 flex items-center justify-center bg-[#202C33]">
           <SideBar activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
-        <div className="bg-[#111B21] w-full md:w-1/3 lg:w-2/5 h-1/2 md:h-full flex items-center justify-center">
+        <div className="bg-[#111B21] w-full md:w-1/3 lg:w-2/5 h-1/2 md:h-full">
           {renderComponent()}
         </div>
         <div className="bg-[#202C33] w-full md:w-2/3 lg:w-3/4 h-1/2 md:h-full flex items-center justify-center">
-          Raza
+          <WhatsAppWebIcon />
         </div>
       </div>
     </div>
