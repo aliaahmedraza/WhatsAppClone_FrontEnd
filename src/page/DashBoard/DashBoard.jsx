@@ -7,8 +7,7 @@ import Groups from "../../components/Groups/Groups";
 import MetaAi from "../../components/MetaAi/MetaAi";
 import Setting from "../../components/Settings/Setting";
 import Profile from "../../components/Profile/Profile";
-import WhatsAppWebIcon from "../../assets/svg/WhatsAppWebIcon";
-import BackArrowIconForSearchBar from "../../assets/svg/BackArrowIconForSearchBar";
+import ChatDisplayByPerson from "../../components/ChatDisplayByPerson/ChatDisplayByPerson";
 
 const DashBoard = () => {
   const [activeTab, setActiveTab] = React.useState("chats");
@@ -39,8 +38,8 @@ const DashBoard = () => {
         <div className="bg-[#111B21] w-full md:w-1/3 lg:w-2/5 h-1/2 md:h-full">
           {renderComponent()}
         </div>
-        <div className="bg-[#202C33] w-full md:w-2/3 lg:w-3/4 h-1/2 md:h-full flex items-center justify-center">
-          <WhatsAppWebIcon />
+        <div className="bg-[#202C33] w-full md:w-2/3 lg:w-3/4 h-1/2 md:h-full">
+          <ChatDisplayByPerson/>
         </div>
       </div>
     </div>

@@ -50,7 +50,7 @@ const Chat = () => {
             <div key={i}>
               <button
                 onClick={() => setSelectedButton(btn)}
-                className={`rounded-2xl h-9 p-2 md:h-6 md:p-1 text-sm flex items-center justify-center ${
+                className={`rounded-2xl h-9 p-2 text-sm flex items-center justify-center ${
                   selectedButton === btn
                     ? "bg-[#005C4B] text-[#8696A0]"
                     : "bg-[#202C33] text-[#8696A0]"
