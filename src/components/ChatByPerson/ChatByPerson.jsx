@@ -2,25 +2,40 @@ import React from "react";
 
 const ChatByPerson = () => {
   const personChatDetail = [
-    { src: "/profile.png", name: "Ali", message: "Hi", time: "12am" },
-    { src: "/profile.png", name: "Ali", message: "Hi", time: "12am" },
-    { src: "/profile.png", name: "Ali", message: "Hi", time: "12am" },
-    { src: "/profile.png", name: "Ali", message: "Hi", time: "12am" },
-    { src: "/profile.png", name: "Ali", message: "Hi", time: "12am" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
+    { src: "/profile.png", name: "Ali", message: "Hi", time: "12 AM" },
   ];
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full mt-2">
       {personChatDetail.map((details, i) => (
-        <div key={i} className="flex mx-3 gap-2 items-center h-24">
-          <div>
+        <div key={i} className="flex mx-3 items-center h-18">
+          <div className="pb-2">
             <img src={details.src} className="h-10 w-11 rounded-[50%]" />
           </div>
-          <div className="flex flex-col gap-1 border-t-[#374248] border-t-1 w-full mr-2">
-            <div className="flex justify-between">
-              <h1>{details.name}</h1>
-              <p>{details.time}</p>
+          <div className="flex flex-col gap-1 border-b-[#374248] border-b-1 w-full justify-center pb-2 ml-3">
+            <div className="flex justify-between items-center">
+              <h1 className="text-[#E9EDEF]">{details.name}</h1>
+              <p className="text-[#8696A0] pr-3 text-sm">{details.time}</p>
             </div>
-            <div>{details.message}</div>
+            <div className="text-[#8696A0] text-sm">{details.message}</div>
           </div>
         </div>
       ))}
