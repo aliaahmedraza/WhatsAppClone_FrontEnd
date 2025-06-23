@@ -1,0 +1,28 @@
+.hide-scrollbar {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+.custom-emoji-scrollbar .epr-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .custom-emoji-scrollbar .epr-body::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  .custom-emoji-scrollbar .epr-body::-webkit-scrollbar-thumb {
+    background-color: #666;
+    border-radius: 8px;
+    border: 2px solid transparent;
+  }
+
+  .custom-emoji-scrollbar .epr-body {
+    scrollbar-width: thin;
+    scrollbar-color: #666 transparent;
+  }
+  

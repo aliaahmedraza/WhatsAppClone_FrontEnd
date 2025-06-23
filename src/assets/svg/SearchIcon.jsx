@@ -8,7 +8,7 @@ const SearchIcon = () => {
         height="24"
         width="24"
         preserveAspectRatio="xMidYMid meet"
-        className=""
+        className="text-[#AEBAC1]"
         version="1.1"
         x="0px"
         y="0px"

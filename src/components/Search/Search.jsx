@@ -43,7 +43,7 @@ const Search = ({ placeHolder }) => {
 
   return (
     <div
-      className="flex items-center gap-3 mx-3 bg-[#202C33] rounded-lg h-9 text-[#8696A0] text-sm px-2 cursor-text mt-3"
+      className="flex items-center gap-3 mx-3 bg-[#2E2F2F] rounded-lg h-9 text-[#8696A0] text-sm px-2 cursor-text mt-3"
       onClick={handleSearchBarClick}
       ref={containerRef}
     >

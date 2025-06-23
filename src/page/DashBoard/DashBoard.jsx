@@ -9,12 +9,14 @@ import Setting from "../../components/Settings/Setting";
 import Profile from "../../components/Profile/Profile";
 import ChatDisplayByPerson from "../../components/ChatDisplayByPerson/ChatDisplayByPerson";
 
-const DashBoard = () => {
+
+const DashBoard = ({ }) => {
   const [activeTab, setActiveTab] = React.useState("chats");
+  const [selectedPerson, setSelectedPerson] = React.useState(null);
   const renderComponent = () => {
     switch (activeTab) {
       case "chats":
-        return <Chat />;
+        return <Chat setSelectedPerson={setSelectedPerson} />;
       case "status":
         return <Status />;
       case "channels":
@@ -29,17 +31,18 @@ const DashBoard = () => {
         return <Profile />;
     }
   };
+
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-5">
-      <div className="flex flex-row md:flex-row h-[900px]">
-        <div className="border-r-2 border-r-[#374248] w-full md:w-18 h-1/2 md:h-full lg:w-18 flex items-center justify-center bg-[#202C33]">
+    <div className="h-100vh">
+      <div className="flex flex-row md:flex-row h-[100vh]">
+        <div className="border-r-2 border-r-[#374248] w-full md:w-18 h-1/2 md:h-full lg:w-18 flex items-center justify-center bg-[#1D1F1F]">
           <SideBar activeTab={activeTab} setActiveTab={setActiveTab} />
         </div>
-        <div className="bg-[#111B21] w-full md:w-1/3 lg:w-2/5 h-1/2 md:h-full">
+        <div className="bg-[#161717] w-full md:w-1/3 lg:w-2/7 h-1/2 md:h-full">
           {renderComponent()}
         </div>
-        <div className="bg-[#202C33] w-full md:w-2/3 lg:w-3/4 h-1/2 md:h-full">
-          <ChatDisplayByPerson/>
+        <div className="bg-[#161717] w-full md:w-2/3 lg:w-3/4 h-1/2 md:h-full">
+          <ChatDisplayByPerson selectedPerson={selectedPerson} />
         </div>
       </div>
     </div>

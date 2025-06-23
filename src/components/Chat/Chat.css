@@ -3,6 +3,7 @@
   }
   .custom-scrollbar::-webkit-scrollbar-track {
     background: transparent;
+    margin-top: 5px;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
     background-color: #374248;
@@ -12,7 +13,8 @@
     background-color: #E9EDEF;
   }
 .custom-scrollbar::-webkit-scrollbar-button {
-    height: 12px;
+    height: 2px;
+    width: 2px;
     background-color: #374248;
   }
   .custom-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {

@@ -6,7 +6,7 @@ import ArchievedIcon from "../../assets/svg/ArchievedIcon";
 import ChatByPerson from "../ChatByPerson/ChatByPerson";
 import "./Chat.css";
 
-const Chat = () => {
+const Chat = ({ setSelectedPerson }) => {
   const [selectedIcon, setSelectedIcon] = React.useState("");
   const [selectedButton, setSelectedButton] = React.useState("All");
   const [searchPlaceHolder, setSearchPlaceHolder] = React.useState("Search");
@@ -58,8 +58,8 @@ const Chat = () => {
                 }}
                 className={`rounded-2xl h-9 p-2 text-sm flex items-center justify-center ${
                   selectedButton === btn
-                    ? "bg-[#005C4B] text-[#8696A0]"
-                    : "bg-[#202C33] text-[#8696A0]"
+                    ? "bg-[#005C4B] text-[#8696A0] "
+                    : "bg-[#161717] text-[#8696A0] border-[1px] border-[#343636]"
                 }`}
               >
                 {btn}
@@ -71,12 +71,12 @@ const Chat = () => {
       <div className="flex-1 overflow-auto custom-scrollbar mr-[2px] mt-4">
         <div className="flex ml-5 mr-[2px] gap-4">
           <ArchievedIcon />
-          <h1 className="text-[#E9EDEF] border-b-[#374248] border-b-1 w-full pb-5 ml-1">
+          <h1 className="text-[#E9EDEF] w-full pb-5 ml-1">
             Archieved
           </h1>
         </div>
         <div>
-          <ChatByPerson />
+          <ChatByPerson setSelectedPerson={setSelectedPerson} />
         </div>
       </div>
     </div>
