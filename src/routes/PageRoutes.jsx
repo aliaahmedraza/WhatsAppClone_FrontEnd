@@ -7,7 +7,7 @@ const PageRoutes = () => {
   return (
    <Routes>
     <Route path="/" element={<Landingpage/>}/>
-    <Route path="dashboard" element={<DashBoard/>}/>
+    <Route path="/dashboard" element={<DashBoard/>}/>
     <Route path="*" element={<NotFoundPage/>}/>
    </Routes>
   )

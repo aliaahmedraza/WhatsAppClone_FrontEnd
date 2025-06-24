@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-// import axios from "axios";
+import axios from "axios";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 const SignupSchema = Yup.object().shape({
@@ -28,42 +28,36 @@ const SignupPage = ({ onLoginClick }) => {
         password: "",
       };
 
-  // const handleSubmit = async (
-  //   values,
-  //   { setSubmitting, resetForm}
-  // ) => {
-  //   try {
-  //       const response = await axios.post(
-  //         "*",
-  //         { firstName:values.firstName,
-  //           lastName:values.lastName,
-  //           phoneNumber: values.phoneNumber,
-  //           password: values.password,
-  //         },
-  //         { withCredentials: true }
-  //       );
-  //     alert(response.data.message || "Signup successful!");
-  //     resetForm();
-  //     onLoginClick();
-  //   } catch (error) {
-  //       console.error("SignUp error:", error.response?.data || error.message);
-  //       alert("Error during SignUp. Please try again.");
-  //     }finally {
-  //     setSubmitting(false);
-  //   }
-  // };
-const handleSubmit=({seSubmitting , resetForm})=>{
-  alert("Signup successful!");
-  onLoginClick();
-  resetForm();
-  seSubmitting(false);
-}
+  const handleSubmit = async (
+    values,
+    { setSubmitting, resetForm}
+  ) => {
+    try {
+        const response = await axios.post(
+          "http://localhost:4004/signup",
+          {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            phoneNumber: values.phoneNumber,
+            password: values.password,
+          },
+          { withCredentials: true }
+        );
+      alert(response.data.message || "Signup successful!");
+      resetForm();
+      onLoginClick();
+    } catch (error) {
+        console.error("SignUp error:", error.response?.data || error.message);
+        alert("Error during SignUp. Please try again.");
+      }finally {
+      setSubmitting(false);
+    }
+  };
   return (
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold text-center mb-6 text-[#25D366]">
           Create Your Account
         </h2>
-
         <Formik
           initialValues={initialValues}
           validationSchema={SignupSchema}

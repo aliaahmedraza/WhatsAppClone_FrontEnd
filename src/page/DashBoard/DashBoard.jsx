@@ -8,9 +8,7 @@ import MetaAi from "../../components/MetaAi/MetaAi";
 import Setting from "../../components/Settings/Setting";
 import Profile from "../../components/Profile/Profile";
 import ChatDisplayByPerson from "../../components/ChatDisplayByPerson/ChatDisplayByPerson";
-
-
-const DashBoard = ({ }) => {
+const DashBoard = ({}) => {
   const [activeTab, setActiveTab] = React.useState("chats");
   const [selectedPerson, setSelectedPerson] = React.useState(null);
   const renderComponent = () => {
