@@ -1,7 +1,7 @@
 import { useState, React, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-// import axios from "axios";
+import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const LoginPage = ({ onSignUpClick }) => {
             Cookies.remove("token");
             setIsTokenExpired(true);
         } else {
-          navigate("/"); 
+          navigate("/dashboard"); 
         }
         setIsTokenPresent(true); 
       } catch (error) {
@@ -56,36 +56,28 @@ const LoginPage = ({ onSignUpClick }) => {
     }
   }, [navigate]);
 
-  // const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-  //   try {
-  //     const response = await axios.post(
-  //       "*",
-  //       {
-  //         phoneNumber: values.phoneNumber,
-  //         password: values.password,
-  //       },
-  //       { withCredentials: true }
-  //     );
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:4004/login",
+        {
+          phoneNumber: values.phoneNumber,
+          password: values.password,
+        },
+        { withCredentials: true }
+      );
 
-  //     alert("Login Successful");
-  //     Cookies.set("token", response.data.token);
-  //     navigate("/dashboard");
-  //     resetForm();
-  //   } catch (error) {
-  //     console.error("Login error:", error.response?.data || error.message);
-  //     alert("Error during Login. Please try again.");
-  //   } finally {
-  //     setSubmitting(false);
-  //   }
-  // };
-
-  const handleSubmit = ({setSubmitting,resetForm})=>{
-    alert("Login Successful");
-    navigate("dashboard")
-    resetForm();
-    setSubmitting(false);
-  }
-
+      alert("Login Successful");
+      Cookies.set("token", response.data.token);
+      navigate("/dashboard");
+      resetForm();
+    } catch (error) {
+      console.error("Login error:", error.response?.data || error.message);
+      alert("Error during Login. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <div>
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
