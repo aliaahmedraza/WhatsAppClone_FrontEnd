@@ -59,7 +59,7 @@ const LoginPage = ({ onSignUpClick }) => {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       const response = await axios.post(
-        "http://localhost:4004/login",
+        "http://localhost:4005/login",
         {
           phoneNumber: values.phoneNumber,
           password: values.password,
@@ -102,7 +102,7 @@ const LoginPage = ({ onSignUpClick }) => {
                   PhoneNumber
                 </label>
                 <Field
-                  type="phoneNumber"
+                  type="tel"
                   name="phoneNumber"
                   className={`w-full p-2 border rounded-md ${
                     errors.phoneNumber && touched.phoneNumber

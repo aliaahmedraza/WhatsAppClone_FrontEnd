@@ -34,7 +34,7 @@ const SignupPage = ({ onLoginClick }) => {
   ) => {
     try {
         const response = await axios.post(
-          "http://localhost:4004/signup",
+          "http://localhost:4005/signup",
           {
             firstName: values.firstName,
             lastName: values.lastName,
