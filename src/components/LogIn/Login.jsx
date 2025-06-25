@@ -10,10 +10,10 @@ const LoginPage = ({ onSignUpClick }) => {
   const navigate = useNavigate();
   const [isTokenExpired, setIsTokenExpired] = useState(false);
   const [isTokenPresent, setIsTokenPresent] = useState(false);
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  const phoneRegExp = /^923(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9])\d{7}$/;
   const LoginSchema = Yup.object().shape({
     phoneNumber:Yup.string()
-    .matches(phoneRegExp, 'Phone number is not valid (01234567890)')
+    .matches(phoneRegExp, 'Phone number is not valid (923234567890)')
     .min(11)
     .required('A phone number is required'),
     password: Yup.string()
