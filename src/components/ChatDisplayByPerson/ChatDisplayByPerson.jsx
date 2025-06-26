@@ -79,24 +79,6 @@ const ChatDisplayByPerson = ({ selectedPerson }) => {
               ))}
             </div>
             <ChatInput/>
-            {/* <div className="flex items-center px-3 mb-2 gap-3 h-13 rounded-4xl bg-[#242626] mx-3 w-[68vw]">
-              <div className="flex gap-3">
-                <AttachmentMenu />
-                <button>
-                  <EmojiIcon />
-                </button>
-              </div>
-              <div className="flex items-center justify-between w-full">
-                <input
-                  type="text"
-                  placeholder="Type a message"
-                  className=" w-[100%] rounded-lg p-2 text-[#E9EDEF] outline-none "
-                />
-                <button>
-                  <AudioMessageIcon />
-                </button>
-              </div>
-            </div> */}
           </div>
         </div>
       ) : (
