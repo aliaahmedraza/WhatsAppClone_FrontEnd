@@ -5,7 +5,9 @@ import MenuIcon from "../../assets/svg/MenuIcon";
 import SearchIcon from "../../assets/svg/SearchIcon";
 import "../Chat/Chat.css";
 import ChatInput from "../ChatInputField/ChatInputField";
-const ChatDisplayByPerson = ({ selectedPerson }) => {
+import personStore from "../../ZustandStore/PersonStore/PersonStore";
+const ChatDisplayByPerson = () => {
+  const { person } = personStore();
   const messages = [
     { text: "Hi", isMe: true, time: "12:00 AM" },
     { text: "Hello", isMe: false, time: "12:00 AM" },
@@ -46,17 +48,17 @@ const ChatDisplayByPerson = ({ selectedPerson }) => {
   ];
   return (
     <div className=" h-[100vh]">
-      {selectedPerson ? (
+      {person ? (
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-between px-3 py-2 min-h-[56px]">
             <div className="flex items-center gap-2 sm:gap-3">
               <img
-                src={selectedPerson?.src}
+                src={person?.src}
                 alt="Profile"
                 className="h-9 w-9 sm:h-11 sm:w-11 rounded-full object-cover"
               />
               <h1 className="text-white text-sm sm:text-base font-medium truncate max-w-[150px] sm:max-w-[200px]">
-                {selectedPerson?.name}
+                {person?.name}
               </h1>
             </div>
             <div className="flex items-center gap-2 sm:gap-3 text-white">
