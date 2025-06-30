@@ -10,12 +10,12 @@ import ProfileIcon from "../../assets/svg/ProfileIcon";
 
 const SideBar = ({ activeTab, setActiveTab }) => {
   return (
-    <div className="h-full flex flex-col justify-between pt-2 pb-5">
+  <div className="h-svh flex flex-col justify-between pt-3 pb-5">
       <div className="flex flex-col gap-5 items-center">
         <NavIcon
           icon={MessageIcon}
           label="Chats"
-          selected={activeTab === "chats"}
+        selected={activeTab === "chats"}
           onClick={() => setActiveTab("chats")}
         />
         <NavIcon

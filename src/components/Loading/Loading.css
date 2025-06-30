@@ -1,0 +1,51 @@
+.spninner > div {
+    background-color: rgba(38, 0, 255, 0.2);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    border: 2px solid #004dff;
+  }
+  
+  .spninner {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+    animation: spin 3s infinite ease;
+  }
+  .spninner > div:nth-child(1) {
+    transform: translateZ(-22px); /* Back */
+  }
+  .spninner > div:nth-child(2) {
+    transform: rotateY(90deg) translateZ(22px); /* Right */
+  }
+  .spninner > div:nth-child(3) {
+    transform: rotateY(-90deg) translateZ(22px); /* Left */
+  }
+  .spninner > div:nth-child(4) {
+    transform: rotateX(90deg) translateZ(22px); /* Top */
+  }
+  .spninner > div:nth-child(5) {
+    transform: rotateX(-90deg) translateZ(22px); /* Bottom */
+  }
+  .spninner > div:nth-child(6) {
+    transform: translateZ(22px); /* Front */
+  }
+  
+  @keyframes spin {
+    50% {
+      transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+    }
+    100% {
+      transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+    }
+  }
+  /* @keyframes spin {
+    50% {
+      transform: rotate(45deg) rotateX(25deg) rotateY(385deg);
+    }
+    100% {
+      transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+    }
+  } */
