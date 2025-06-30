@@ -45,24 +45,26 @@ const ChatDisplayByPerson = ({ selectedPerson }) => {
     { text: "What's up?", isMe: true, time: "12:00 AM" },
   ];
   return (
-    <div className=" h-full">
+    <div className=" h-[100vh]">
       {selectedPerson ? (
         <div className="h-full flex flex-col">
-          <div className="h-[7vh] flex items-center justify-between px-3 gap-3">
-            <div className=" flex items-center gap-3">
+          <div className="flex items-center justify-between px-3 py-2 min-h-[56px]">
+            <div className="flex items-center gap-2 sm:gap-3">
               <img
                 src={selectedPerson?.src}
-                className="h-11 w-11 rounded-[50%]"
+                alt="Profile"
+                className="h-9 w-9 sm:h-11 sm:w-11 rounded-full object-cover"
               />
-              <h1 className="text-[white]">{selectedPerson?.name}</h1>
+              <h1 className="text-white text-sm sm:text-base font-medium truncate max-w-[150px] sm:max-w-[200px]">
+                {selectedPerson?.name}
+              </h1>
             </div>
-
-            <div className="flex gap-2">
-              <SearchIcon />
-              <MenuIcon />
+            <div className="flex items-center gap-2 sm:gap-3 text-white">
+              <SearchIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+              <MenuIcon className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
           </div>
-          <div className="bg-[url('/bg.webp')] bg-cover w-fit h-[100vh] flex flex-col opacity-80 overflow-hidden">
+          <div className="bg-[url('/bg.webp')] bg-cover w-full h-[100vh] flex flex-col opacity-80 overflow-hidden">
             <div className="flex-1 overflow-y-auto custom-scrollbar mr-[2px] p-4 flex flex-col ">
               {messages.map((msg, i) => (
                 <div
@@ -78,7 +80,7 @@ const ChatDisplayByPerson = ({ selectedPerson }) => {
                 </div>
               ))}
             </div>
-            <ChatInput/>
+            <ChatInput />
           </div>
         </div>
       ) : (
@@ -88,7 +90,7 @@ const ChatDisplayByPerson = ({ selectedPerson }) => {
             <div className="text-[#E9EDEF] text-3xl mt-6 font-light">
               WhatsApp Web
             </div>
-            <div className="text-[#8D9599] flex flex-col items-center text-sm">
+            <div className="text-[#8D9599] flex flex-col items-center text-sm md:flex-wrap">
               <h1>
                 Sends and receive messages without keeping your phone online.
               </h1>

@@ -12,20 +12,18 @@ const Chat = ({ setSelectedPerson }) => {
   const [searchPlaceHolder, setSearchPlaceHolder] = React.useState("Search");
   const buttons = ["All", "Unreads", "Favorites", "Groups"];
   return (
-    <div className="container h-full w-full flex flex-col">
-      <div className="h-1/6 min-h-[100px] ">
-        <div className="flex justify-between items-center h-1/3 mx-3">
-          <div className="text-[#E9EDEF]">
-            <h1 className="font-bold text-2xl sm:text-2xl">Chats</h1>
-          </div>
+    <div className="container h-full w-full flex flex-col bg-[#161717] text-[#E9EDEF]">
+      <div className="px-4 pt-4 pb-2">
+        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 sm:gap-0">
+          <h1 className="font-bold text-xl sm:text-2xl">WhatsApp</h1>
           <div className="flex gap-3 sm:gap-5 items-center">
             <div
               onClick={() => setSelectedIcon("newChat")}
               onDoubleClick={() => setSelectedIcon("")}
-              className={`flex items-center justify-center rounded-[50%] h-9 w-9 cursor-pointer transition-colors ${
+              className={`flex items-center justify-center rounded-full h-9 w-9 cursor-pointer transition-colors ${
                 selectedIcon === "newChat"
                   ? "bg-[#374248] text-[#AEBAC1]"
-                  : "text-[#AEBAC1] "
+                  : "text-[#AEBAC1]"
               }`}
             >
               <NewChatIcon />
@@ -33,51 +31,46 @@ const Chat = ({ setSelectedPerson }) => {
             <div
               onClick={() => setSelectedIcon("menu")}
               onDoubleClick={() => setSelectedIcon("")}
-              className={`flex items-center justify-center rounded-[50%] h-9 w-9 cursor-pointer transition-colors ${
+              className={`flex items-center justify-center rounded-full h-9 w-9 cursor-pointer transition-colors ${
                 selectedIcon === "menu"
                   ? "bg-[#374248] text-[#AEBAC1]"
-                  : "text-[#AEBAC1] "
+                  : "text-[#AEBAC1]"
               }`}
             >
               <MenuIcon />
             </div>
           </div>
         </div>
-        <div>
+        <div className="mt-4">
           <Search placeHolder={searchPlaceHolder} />
         </div>
-        <div className="flex gap-2.5 h-1/3 mx-3 items-center md:gap-2 md:pr-5">
+        <div className="flex gap-2 mt-3">
           {buttons.map((btn, i) => (
-            <div key={i}>
-              <button
-                onClick={() => {
-                  if (btn === "All") {
-                    setSearchPlaceHolder("Search");
-                  } else setSearchPlaceHolder(`Search ${btn} chats`);
-                  setSelectedButton(btn);
-                }}
-                className={`rounded-2xl h-9 p-2 text-sm flex items-center justify-center ${
-                  selectedButton === btn
-                    ? "bg-[#005C4B] text-[#8696A0] "
-                    : "bg-[#161717] text-[#8696A0] border-[1px] border-[#343636]"
-                }`}
-              >
-                {btn}
-              </button>
-            </div>
+            <button
+              key={i}
+              onClick={() => {
+                setSearchPlaceHolder(
+                  btn === "All" ? "Search" : `Search ${btn} chats`
+                );
+                setSelectedButton(btn);
+              }}
+              className={`rounded-2xl px-3 py-1.5 text-sm font-medium transition-colors ${
+                selectedButton === btn
+                  ? "bg-[#005C4B] text-[#8696A0]"
+                  : "bg-[#161717] text-[#8696A0] border border-[#343636]"
+              }`}
+            >
+              {btn}
+            </button>
           ))}
         </div>
       </div>
-      <div className="flex-1 overflow-auto custom-scrollbar mr-[2px] mt-4">
-        <div className="flex ml-5 mr-[2px] gap-4">
+      <div className="flex-1 overflow-auto px-4 pt-2 custom-scrollbar">
+        <div className="flex items-center gap-2 mb-5 mt-2 ml-3">
           <ArchievedIcon />
-          <h1 className="text-[#E9EDEF] w-full pb-5 ml-1">
-            Archieved
-          </h1>
+          <h2 className="text-base font-semibold ml-2">Archived</h2>
         </div>
-        <div>
-          <ChatByPerson setSelectedPerson={setSelectedPerson} />
-        </div>
+        <ChatByPerson setSelectedPerson={setSelectedPerson} />
       </div>
     </div>
   );
