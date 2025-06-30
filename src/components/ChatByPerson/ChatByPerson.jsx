@@ -1,7 +1,8 @@
 import React from "react";
-
-const ChatByPerson = ({ setSelectedPerson }) => {
-  const [activeChat , setActiveChat] = React.useState(null);
+import personStore from "../../ZustandStore/PersonStore/PersonStore";
+const ChatByPerson = () => {
+  const [activeChat, setActiveChat] = React.useState(null);
+  const { setPerson } = personStore();
   const personChatDetail = [
     {
       src: "/profile.png",
@@ -136,7 +137,7 @@ const ChatByPerson = ({ setSelectedPerson }) => {
               : "flex items-center h-18 hover:bg-[#232424] hover:rounded-lg"
           } `}
           onClick={() => {
-            setSelectedPerson(details);
+            setPerson(details);
             setActiveChat(i);
           }}
         >
