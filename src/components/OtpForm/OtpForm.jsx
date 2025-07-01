@@ -5,7 +5,7 @@ import axios from "axios";
 import NewPassword from "../NewPassword/NewPassword";
 import OtpResendTimer from "../ResendOTPCounter/ResendOTPCounter";
 
-const OtpForm = ({ recipient ,resendOtp }) => {
+const OtpForm = ({ recipient  }) => {
   const [otpVefified, setOtpVefified] = React.useState(false);
   const Otp_Digit_Count = 4;
   const [inputArray, setInputArray] = useState(
@@ -84,7 +84,7 @@ const OtpForm = ({ recipient ,resendOtp }) => {
           >
             OTP Verification
             </button>
-            <OtpResendTimer onResendOtp={resendOtp} initialTime={10}/>
+            <OtpResendTimer initialTime={10}/>
         </div>
       )}
     </div>

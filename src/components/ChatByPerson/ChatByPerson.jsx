@@ -127,7 +127,7 @@ const ChatByPerson = () => {
   ];
 
   return (
-    <div className="h-[100vh] w-full mt-2">
+    <div className="h-[100vh] mt-2">
       {personChatDetail.map((details, i) => (
         <div
           key={i}
