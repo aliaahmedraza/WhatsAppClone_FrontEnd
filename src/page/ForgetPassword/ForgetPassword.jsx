@@ -3,6 +3,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
 import OtpForm from "../../components/OtpForm/OtpForm";
+import ResendOTPStore from "../../ZustandStore/ResendOTP/ResendOTP";
 const phoneRegExp =
   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const ForgotPasswordSchema = Yup.object().shape({
@@ -14,6 +15,7 @@ const ForgotPasswordSchema = Yup.object().shape({
 const ForgetPassword = () => {
   const [isOtpSend, setIsOtpSend] = React.useState(false);
   const [submittedPhoneNumber, setSubmittedPhoneNumber] = React.useState("");
+  const { setResendOTP } = ResendOTPStore();
   const initialValues = {
     phoneNumber: "",
   };
@@ -22,27 +24,24 @@ const ForgetPassword = () => {
       const response = await axios.post("http://localhost:4005/send-otp", {
         recipient: values.phoneNumber,
       });
-      alert(response.data.message || "Message sent successfully.");
+      alert(response.data.message || "Otp Message sent successfully.");
       setIsOtpSend(true);
       setSubmittedPhoneNumber(values.phoneNumber);
     } catch (error) {
       const errorMessage =
         error.response?.data?.message ||
-        "Failed to send Message. Please try again.";
+        "Failed to send otp Message. Please try again.";
       alert(errorMessage);
     } finally {
       setSubmitting(false);
       resetForm();
     }
   };
-  const handleResendOtp = async () => {
+  const handleResendOtp = React.useCallback(async () => {
     try {
-      const response = await axios.post(
-        "http://localhost:4005/send-otp",
-        {
-          recipient: submittedPhoneNumber,
-        }
-      );
+      const response = await axios.post("http://localhost:4005/send-otp", {
+        recipient: submittedPhoneNumber,
+      });
       alert(response.data.message || "OTP resent successfully.");
     } catch (error) {
       alert(
@@ -50,8 +49,11 @@ const ForgetPassword = () => {
           "Failed to resend OTP. Please try again."
       );
     }
-  }
-
+  }, [submittedPhoneNumber]);
+  
+  React.useEffect(() => {
+    setResendOTP(handleResendOtp);
+  }, [handleResendOtp]);  
   return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
         <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
@@ -59,7 +61,7 @@ const ForgetPassword = () => {
             Forgot Password
           </h2>
           {isOtpSend ? (
-              <OtpForm recipient={submittedPhoneNumber} resendOtp={handleResendOtp} />
+              <OtpForm recipient={submittedPhoneNumber} />
           ) : (
             <Formik
               initialValues={initialValues}

@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
+import ResendOTPStore from "../../ZustandStore/ResendOTP/ResendOTP";
 
-const OtpResendTimer = ({ onResendOtp, initialTime}) => {
+const OtpResendTimer = ({ initialTime }) => {
   const [timeLeft, setTimeLeft] = useState(initialTime);
   const [isTimerRunning, setIsTimerRunning] = useState(true);
+  const resendOTP = ResendOTPStore((state) => state.resendOTP);
   const timerRef = useRef(null);
 
   useEffect(() => {
@@ -20,7 +22,11 @@ const OtpResendTimer = ({ onResendOtp, initialTime}) => {
 
   const handleResendClick = () => {
     if (!isTimerRunning) {
-      onResendOtp();
+      if (resendOTP) {
+        resendOTP();
+      } else {
+        console.warn("Resend OTP function not available");
+      }
       setTimeLeft(initialTime);
       setIsTimerRunning(true);
     }
