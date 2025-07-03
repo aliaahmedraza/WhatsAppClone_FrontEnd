@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
+import PhoneInputMask from "../InputMask/PhoneInputMask";
 
 const phoneRegExp = /^923([0-4][0-9])\d{7}$/;
 const SignupSchema = Yup.object().shape({
@@ -107,14 +108,14 @@ const SignupPage = ({ onLoginClick }) => {
                 PhoneNumber
               </label>
               <Field
-                type="tel"
+                as={PhoneInputMask}
                 name="phoneNumber"
                 className={`w-full p-2 border rounded-md ${
                   errors.phoneNumber && touched.phoneNumber
                     ? "border-red-500"
                     : "border-gray-300"
                 }`}
-                placeholder="Enter your PhoneNumber"
+                placeholder="Enter your PhoneNumber Without '0'"
               />
               {errors.phoneNumber && touched.phoneNumber && (
                 <div className="text-red-500 text-sm mt-1">
