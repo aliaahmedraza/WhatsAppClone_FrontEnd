@@ -1,8 +1,10 @@
 import React from 'react'
+import newChatDrawerStore from '../../ZustandStore/NewChatDrawerStore/NewChatDrawerStore';
 
 const NewChatIcon = () => {
+  const { setOpen } = newChatDrawerStore();
   return (
-    <span aria-hidden="true" data-icon="new-chat-outline" className="">
+    <span aria-hidden="true" data-icon="new-chat-outline" onClick={()=>setOpen(true)}>
       <svg
         viewBox="0 0 24 24"
         height="24"
@@ -27,4 +29,4 @@ const NewChatIcon = () => {
   );
 }
 
-export default NewChatIcon
+export default NewChatIcon;

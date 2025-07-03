@@ -5,6 +5,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import PhoneInputMask from "../InputMask/PhoneInputMask";
 
 const LoginPage = ({ onSignUpClick }) => {
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ const LoginPage = ({ onSignUpClick }) => {
                   PhoneNumber
                 </label>
                 <Field
-                  type="tel"
+                  as={PhoneInputMask}
                   name="phoneNumber"
                   className={`w-full p-2 border rounded-md ${
                     errors.phoneNumber && touched.phoneNumber
