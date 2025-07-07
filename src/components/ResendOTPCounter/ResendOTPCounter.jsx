@@ -16,7 +16,6 @@ const OtpResendTimer = ({ initialTime }) => {
       clearInterval(timerRef.current);
       setIsTimerRunning(false);
     }
-
     return () => clearInterval(timerRef.current);
   }, [timeLeft, isTimerRunning]);
 
@@ -43,15 +42,15 @@ const OtpResendTimer = ({ initialTime }) => {
   return (
     <div>
       {isTimerRunning ? (
-        <p className="text-blue-500 hover:text-blue-700 hover:underline">
+        <p className="mt-2 text-blue-500 hover:text-blue-700 hover:underline">
           Resend OTP in: {formatTime(timeLeft)}
         </p>
       ) : (
         <button
           onClick={handleResendClick}
-          className="mt-4 px-4 py-2 rounded-md transition duration-300 bg-blue-500 hover:bg-blue-600 text-white"
+          className="mt-4 px-4 py-2 border-none hover:underline text-blue-500 hover:text-blue-600"
         >
-          Resend OTP
+          Resend
         </button>
       )}
     </div>
@@ -59,3 +58,10 @@ const OtpResendTimer = ({ initialTime }) => {
 };
 
 export default OtpResendTimer;
+{/* <button
+  onClick={handleResendClick}
+  disabled={isTimerRunning}
+  className="mt-4 px-4 py-2 rounded-md transition duration-300 bg-blue-500 hover:bg-blue-600 text-white"
+>
+  {isTimerRunning ? `Resend OTP in: ${formatTime(timeLeft)}` : "Resend OTP"}
+</button>; */}
