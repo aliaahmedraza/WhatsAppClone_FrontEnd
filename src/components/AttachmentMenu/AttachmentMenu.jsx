@@ -13,12 +13,10 @@ import NewStickerIcon from "../../assets/svg/NewStickerIcon";
 const AttachmentMenu = ({ onAttach }) => {
   const [showMenu, setShowMenu] = useState(false);
   const containerRef = React.useRef(null);
-
   const fileRef = useRef();
   const imageRef = useRef();
   const audioRef = useRef();
   const stickerRef = useRef();
-
   const toggleMenu = () => setShowMenu(!showMenu);
 
   const menuOptions = [
@@ -32,15 +30,13 @@ const AttachmentMenu = ({ onAttach }) => {
     { icon: <NewStickerIcon />, label: "New Sticker", ref: stickerRef },
   ];
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (containerRef.current && !containerRef.current.contains(event.target)) {
-        setShowMenu(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const label = event.target.getAttribute("data-label");
+    if (file && onAttach) {
+      onAttach(file, label);
+    }
+  };
 
   const handleOptionClick = (inputRef, label) => {
     if (inputRef && inputRef.current) {
@@ -52,13 +48,18 @@ const AttachmentMenu = ({ onAttach }) => {
     setShowMenu(false);
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const label = event.target.getAttribute("data-label");
-    if (file && onAttach) {
-      onAttach(file, label);
-    }
-  };
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target)
+      ) {
+        setShowMenu(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="relative inline-block text-left">
@@ -86,7 +87,6 @@ const AttachmentMenu = ({ onAttach }) => {
           ))}
         </div>
       )}
-
       <input
         ref={fileRef}
         type="file"
@@ -120,3 +120,4 @@ const AttachmentMenu = ({ onAttach }) => {
 };
 
 export default AttachmentMenu;
+

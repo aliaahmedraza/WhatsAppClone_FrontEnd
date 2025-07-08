@@ -1,8 +1,10 @@
 import React from "react";
 import personStore from "../../ZustandStore/PersonStore/PersonStore";
+
 const ChatByPerson = () => {
   const [activeChat, setActiveChat] = React.useState(null);
   const { setPerson } = personStore();
+
   const personChatDetail = [
     {
       src: "/profile.png",
