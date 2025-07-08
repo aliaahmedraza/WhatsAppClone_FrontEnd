@@ -1,8 +1,10 @@
 import React from "react";
 import personStore from "../../ZustandStore/PersonStore/PersonStore";
+
 const ChatByPerson = () => {
   const [activeChat, setActiveChat] = React.useState(null);
   const { setPerson } = personStore();
+
   const personChatDetail = [
     {
       src: "/profile.png",
@@ -127,7 +129,7 @@ const ChatByPerson = () => {
   ];
 
   return (
-    <div className="h-[100vh] w-full mt-2">
+    <div className="h-[100vh] mt-2">
       {personChatDetail.map((details, i) => (
         <div
           key={i}

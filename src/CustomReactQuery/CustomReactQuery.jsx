@@ -5,6 +5,7 @@ const CustomReactQuery = ({ urlPath }) => {
   const [data, setData] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+
   useEffect(() => {
     try {
       setIsLoading(true);
