@@ -5,7 +5,20 @@ import MenuIcon from "../../assets/svg/MenuIcon";
 import SearchIcon from "../../assets/svg/SearchIcon";
 import "../Chat/Chat.css";
 import ChatInput from "../ChatInputField/ChatInputField";
-const ChatDisplayByPerson = ({ selectedPerson }) => {
+import personStore from "../../ZustandStore/PersonStore/PersonStore";
+import io from "socket.io-client";
+
+const ChatDisplayByPerson = () => {
+  const { person } = personStore();
+  const socket = io("http://localhost:4005");
+  socket.on("connect", () => {
+    console.log("Connected to the server");
+  });
+  socket.on("disconnect", () => {
+    console.log("Disconnected from the server");
+  });
+  socket.emit("chat message", "Hello, server!");
+
   const messages = [
     { text: "Hi", isMe: true, time: "12:00 AM" },
     { text: "Hello", isMe: false, time: "12:00 AM" },
@@ -44,19 +57,20 @@ const ChatDisplayByPerson = ({ selectedPerson }) => {
     { text: "I'm fine, thanks!", isMe: false, time: "12:00 AM" },
     { text: "What's up?", isMe: true, time: "12:00 AM" },
   ];
+
   return (
     <div className=" h-[100vh]">
-      {selectedPerson ? (
+      {person ? (
         <div className="h-full flex flex-col">
           <div className="flex items-center justify-between px-3 py-2 min-h-[56px]">
             <div className="flex items-center gap-2 sm:gap-3">
               <img
-                src={selectedPerson?.src}
+                src={person?.src}
                 alt="Profile"
                 className="h-9 w-9 sm:h-11 sm:w-11 rounded-full object-cover"
               />
               <h1 className="text-white text-sm sm:text-base font-medium truncate max-w-[150px] sm:max-w-[200px]">
-                {selectedPerson?.name}
+                {person?.name}
               </h1>
             </div>
             <div className="flex items-center gap-2 sm:gap-3 text-white">

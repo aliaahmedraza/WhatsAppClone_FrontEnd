@@ -1,7 +1,10 @@
 import React from "react";
+import personStore from "../../ZustandStore/PersonStore/PersonStore";
 
-const ChatByPerson = ({ setSelectedPerson }) => {
-  const [activeChat , setActiveChat] = React.useState(null);
+const ChatByPerson = () => {
+  const [activeChat, setActiveChat] = React.useState(null);
+  const { setPerson } = personStore();
+
   const personChatDetail = [
     {
       src: "/profile.png",
@@ -126,7 +129,7 @@ const ChatByPerson = ({ setSelectedPerson }) => {
   ];
 
   return (
-    <div className="h-[100vh] w-full mt-2">
+    <div className="h-[100vh] mt-2">
       {personChatDetail.map((details, i) => (
         <div
           key={i}
@@ -136,7 +139,7 @@ const ChatByPerson = ({ setSelectedPerson }) => {
               : "flex items-center h-18 hover:bg-[#232424] hover:rounded-lg"
           } `}
           onClick={() => {
-            setSelectedPerson(details);
+            setPerson(details);
             setActiveChat(i);
           }}
         >
