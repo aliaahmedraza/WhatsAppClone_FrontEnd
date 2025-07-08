@@ -5,8 +5,8 @@ import BackArrowIconForSearchBar from "../../assets/svg/BackArrowIconForSearchBa
 const Search = ({ placeHolder }) => {
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-    const inputRef = useRef(null);
-    const containerRef = useRef(null);
+  const inputRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     if (isSearching && inputRef.current) {
@@ -23,27 +23,25 @@ const Search = ({ placeHolder }) => {
         setQuery("");
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-
   const handleSearchBarClick = () => {
     setIsSearching(true);
   };
 
   const handleBackClick = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     setIsSearching(false);
     setQuery("");
   };
 
   return (
     <div
-      className="flex items-center gap-3 mx-3 bg-[#2E2F2F] rounded-lg h-9 text-[#8696A0] text-sm px-2 cursor-text mt-3"
+      className="flex items-center gap-3 bg-[#2E2F2F] rounded-lg h-9 text-[#8696A0] text-sm px-2 cursor-text mt-3"
       onClick={handleSearchBarClick}
       ref={containerRef}
     >

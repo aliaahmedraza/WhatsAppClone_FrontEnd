@@ -3,8 +3,9 @@ import AttachmentMenu from "../AttachmentMenu/AttachmentMenu";
 import EmojiIcon from "../../assets/svg/EmojiIcon";
 import AudioMessageIcon from "../../assets/svg/AudioMessageIcon";
 import SendMessageIcon from "../../assets/svg/SendMessageIcon";
-import EmojiPicker from "emoji-picker-react";
+import  EmojiPicker  from "emoji-picker-react";
 import "./ChatInputField.css";
+
 const ChatInput = () => {
   const [message, setMessage] = React.useState("");
   const [attachedFile, setAttachedFile] = React.useState(null);
@@ -40,11 +41,12 @@ const ChatInput = () => {
         setShowEmojiPicker(false);
       }
     };
-      document.addEventListener("mousedown", handleClickOutside);
-      return () => {
-        document.removeEventListener("mousedown", handleClickOutside);
-      };
-  },[]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const handleAttachmentInsert = (file, label) => {
     if (file) {
       setAttachedFile({ file, label });
@@ -52,12 +54,13 @@ const ChatInput = () => {
       setMessage((prev) => `${label} attached \n ${prev}`);
     }
   };
+
   const handleEmojiClick = (emojiData) => {
     setMessage((prev) => prev + emojiData.emoji);
   };
 
   return (
-    <div className="flex items-center px-3 mb-2 gap-3 h-13 rounded-4xl bg-[#242626] mx-3 w-[68vw]">
+    <div className="flex items-center px-3 mb-2 gap-3 md:gap-2 h-13 rounded-4xl bg-[#242626] mx-3 w-full sm:w-[85%] md:w-[95%] lg:w-[96%] xl:w-[98%] min-h-[48px]">
       <div className="relative flex gap-3">
         <AttachmentMenu onAttach={handleAttachmentInsert} />
         <div className="relative">
@@ -69,7 +72,7 @@ const ChatInput = () => {
           </button>
           {showEmojiPicker && (
             <div
-              className="absolute bottom-14 left-0 z-50"
+              className="absolute bottom-14 left-0 z-50 md:left-[calc(100%-6rem)]"
               ref={emojiPickerRef}
             >
               <EmojiPicker
@@ -108,4 +111,5 @@ const ChatInput = () => {
     </div>
   );
 };
+
 export default ChatInput;

@@ -7,10 +7,15 @@ import WhatsAppStatusIcon from "../../assets/svg/WhatsAppStatusIcon";
 import MetaAiIcon from "../../assets/svg/MetaAiIcon";
 import SettingIcon from "../../assets/svg/SettingIcon";
 import ProfileIcon from "../../assets/svg/ProfileIcon";
+import { useNavigate } from "react-router-dom";
+import AuthStore from "../../ZustandStore/AuthStore/AuthStore";
 
 const SideBar = ({ activeTab, setActiveTab }) => {
+  const navigate = useNavigate();
+  const { logout } = AuthStore();
+
   return (
-    <div className="h-full flex flex-col justify-between pt-2 pb-5">
+    <div className="h-svh flex flex-col justify-between pt-3 pb-5">
       <div className="flex flex-col gap-5 items-center">
         <NavIcon
           icon={MessageIcon}
@@ -43,8 +48,18 @@ const SideBar = ({ activeTab, setActiveTab }) => {
           onClick={() => setActiveTab("ai")}
         />
       </div>
-
       <div className="flex flex-col gap-5 items-center">
+        <div>
+          <button
+            onClick={() => {
+              logout();
+              navigate("/");
+            }}
+            className="text-white font-semibold text-sm"
+          >
+            LogOut
+          </button>
+        </div>
         <NavIcon
           icon={SettingIcon}
           label="Settings"

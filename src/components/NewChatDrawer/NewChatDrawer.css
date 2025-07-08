@@ -1,0 +1,13 @@
+.drawer-slide-left-close {
+    animation: slideOutLeft 0.3s forwards;
+  }
+  
+  @keyframes slideOutLeft {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  

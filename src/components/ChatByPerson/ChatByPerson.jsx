@@ -1,142 +1,145 @@
 import React from "react";
+import personStore from "../../ZustandStore/PersonStore/PersonStore";
 
-const ChatByPerson = ({ setSelectedPerson }) => {
-  const [activeChat , setActiveChat] = React.useState(null);
+const ChatByPerson = () => {
+  const [activeChat, setActiveChat] = React.useState(null);
+  const { setPerson } = personStore();
+
   const personChatDetail = [
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you? Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ahmed",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Raza",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
     {
       src: "/profile.png",
       name: "Ali",
-      message: "Hi ali how are you?",
+      message: "Hi ali how are you Whats up today?",
       time: "12:00 AM",
     },
   ];
 
   return (
-    <div className="h-[100vh] w-full mt-2">
+    <div className="h-[100vh] mt-2">
       {personChatDetail.map((details, i) => (
         <div
           key={i}
           className={`${
             activeChat === i
-              ? "bg-[#2E2F2F] flex mx-3 items-center h-18 rounded-lg"
-              : "flex mx-3 items-center h-18"
+              ? "bg-[#2E2F2F] flex items-center h-18 rounded-lg"
+              : "flex items-center h-18 hover:bg-[#232424] hover:rounded-lg"
           } `}
           onClick={() => {
-            setSelectedPerson(details);
+            setPerson(details);
             setActiveChat(i);
           }}
         >
