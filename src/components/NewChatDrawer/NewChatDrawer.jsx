@@ -32,6 +32,7 @@ const NewChatDrawer = () => {
       <path d="M19 12H5M12 19l-7-7 7-7" />
     </svg>
   );
+
   const personDetail = [
     {
       src: "/profile.png",
@@ -89,6 +90,7 @@ const NewChatDrawer = () => {
       about: "I'm busy",
     },
   ];
+
   return (
     <div className="relative h-full w-full overflow-hidden">
       {open && (

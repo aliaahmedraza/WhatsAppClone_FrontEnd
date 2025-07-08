@@ -2,16 +2,20 @@ import { useState, React, useEffect } from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import Cookies from "js-cookie";
-import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import PhoneInputMask from "../InputMask/PhoneInputMask";
+import CustomAlert from "../CustomAlert/CustomAlert";
+import AuthStore from "../../ZustandStore/AuthStore/AuthStore";
 
 const LoginPage = ({ onSignUpClick }) => {
   const navigate = useNavigate();
   const [isTokenExpired, setIsTokenExpired] = useState(false);
   const [isTokenPresent, setIsTokenPresent] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const { login, checkAuth } = AuthStore();
   const phoneRegExp = /^923([0-4][0-9])\d{7}$/;
+
   const LoginSchema = Yup.object().shape({
     phoneNumber: Yup.string()
       .matches(phoneRegExp, "Phone number is not valid (923234567890)")
@@ -32,30 +36,21 @@ const LoginPage = ({ onSignUpClick }) => {
   };
 
   useEffect(() => {
-    const token = Cookies.get("token");
+    const check = async () => {
+      const result = await checkAuth();
 
-    if (token) {
-      try {
-        const decodedToken = jwtDecode(token);
-        const expiryTime = decodedToken.exp * 1000;
-        const currentTime = Date.now();
+      if (result.status === "valid") {
+        navigate("/dashboard");
+      }
 
-        if (currentTime > expiryTime) {
-          Cookies.remove("token");
-          setIsTokenExpired(true);
-        } else {
-          navigate("/dashboard");
-        }
-        setIsTokenPresent(true);
-      } catch (error) {
-        console.error("Error decoding the token:", error);
+      if (result.status === "expired" || result.status === "invalid") {
         setIsTokenExpired(true);
         setIsTokenPresent(true);
       }
-    } else {
-      setIsTokenPresent(false);
-    }
-  }, [navigate]);
+    };
+
+    check();
+  }, [checkAuth, navigate]);
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
@@ -68,20 +63,45 @@ const LoginPage = ({ onSignUpClick }) => {
         { withCredentials: true }
       );
 
-      alert("Login Successful");
-      Cookies.set("token", response.data.token);
-      navigate("/dashboard");
+      setSuccessMessage(response.data.message || "Login successful!");
+      login(response.data.token);
+      setTimeout(() => {
+        navigate("/dashboard");
+      }, 2000);
       resetForm();
     } catch (error) {
       console.error("Login error:", error.response?.data || error.message);
-      alert("Error during Login. Please try again.");
+      setErrorMessage(
+        error.response?.data?.message || "Login Failed. Please try again."
+      );
     } finally {
       setSubmitting(false);
     }
   };
+
   return (
     <div>
-      <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
+      {successMessage ? (
+        <CustomAlert
+          message="Success"
+          type="success"
+          description={successMessage}
+          onClose={() => setSuccessMessage("")}
+          showIcon
+          className="w-[90%] "
+        />
+      ) : errorMessage ? (
+        <CustomAlert
+          message="Error"
+          type="error"
+          description={errorMessage}
+          onClose={() => setErrorMessage("")}
+          showIcon
+          duration={3000}
+          className="w-[90%] "
+        />
+      ) : null}
+      <div className="bg-white p-8 rounded-xl shadow-md w-full md:w-[90%]">
         {isTokenPresent && isTokenExpired ? (
           <p className="text-red-500 text-center mb-4">
             Your session has expired. Please log in again.
@@ -90,7 +110,6 @@ const LoginPage = ({ onSignUpClick }) => {
         <h2 className="text-2xl font-bold text-center mb-6 text-[#25D366]">
           Log in with WhatsApp
         </h2>
-
         <Formik
           initialValues={initialValues}
           validationSchema={LoginSchema}
@@ -108,6 +127,7 @@ const LoginPage = ({ onSignUpClick }) => {
                 <Field
                   as={PhoneInputMask}
                   name="phoneNumber"
+                  id="phoneNumber"
                   className={`w-full p-2 border rounded-md ${
                     errors.phoneNumber && touched.phoneNumber
                       ? "border-red-500"
@@ -128,6 +148,7 @@ const LoginPage = ({ onSignUpClick }) => {
                 <Field
                   type="password"
                   name="password"
+                  id="password"
                   className={`w-full p-2 border rounded-md ${
                     errors.password && touched.password
                       ? "border-red-500"
@@ -163,7 +184,6 @@ const LoginPage = ({ onSignUpClick }) => {
             </Form>
           )}
         </Formik>
-
         <p className="text-center mt-4 text-gray-600">
           Don't have an account?
           <a

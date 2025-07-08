@@ -14,6 +14,7 @@ const Chat = ({ setSelectedPerson }) => {
   const [searchPlaceHolder, setSearchPlaceHolder] = React.useState("Search");
   const { open } = newChatDrawerStore();
   const buttons = ["All", "Unreads", "Favorites", "Groups"];
+
   return (
     <div className="h-screen overflow-hidden border-r-[1px] border-[#23282b]">
       {open === true ? (

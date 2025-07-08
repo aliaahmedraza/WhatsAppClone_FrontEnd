@@ -1,6 +1,7 @@
 // LoadingScreen.jsx
 import React from "react";
 import "./Loading.css";
+
 const LoadingScreen = () => {
   return (
     <div className="h-screen w-screen bg-black flex items-center justify-center">

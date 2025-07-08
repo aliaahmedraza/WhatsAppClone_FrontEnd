@@ -5,8 +5,8 @@ import BackArrowIconForSearchBar from "../../assets/svg/BackArrowIconForSearchBa
 const Search = ({ placeHolder }) => {
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-    const inputRef = useRef(null);
-    const containerRef = useRef(null);
+  const inputRef = useRef(null);
+  const containerRef = useRef(null);
 
   useEffect(() => {
     if (isSearching && inputRef.current) {
@@ -23,20 +23,18 @@ const Search = ({ placeHolder }) => {
         setQuery("");
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-
   const handleSearchBarClick = () => {
     setIsSearching(true);
   };
 
   const handleBackClick = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     setIsSearching(false);
     setQuery("");
   };
