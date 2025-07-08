@@ -8,6 +8,7 @@ import MetaAi from "../../components/MetaAi/MetaAi";
 import Setting from "../../components/Settings/Setting";
 import Profile from "../../components/Profile/Profile";
 import ChatDisplayByPerson from "../../components/ChatDisplayByPerson/ChatDisplayByPerson";
+import LoadingScreen from "../../components/Loading/Loading";
 const DashBoard = ({}) => {
   const [activeTab, setActiveTab] = React.useState("chats");
   const [selectedPerson, setSelectedPerson] = React.useState(null);
@@ -29,21 +30,25 @@ const DashBoard = ({}) => {
         return <Profile />;
     }
   };
-
   return (
-    <div className="h-100vh">
-      <div className="flex flex-row md:flex-row h-[100vh]">
-        <div className="border-r-2 border-r-[#374248] w-full md:w-18 h-1/2 md:h-full lg:w-18 flex items-center justify-center bg-[#1D1F1F]">
-          <SideBar activeTab={activeTab} setActiveTab={setActiveTab} />
-        </div>
-        <div className="bg-[#161717] w-full md:w-1/3 lg:w-2/7 h-1/2 md:h-full">
-          {renderComponent()}
-        </div>
-        <div className="bg-[#161717] w-full md:w-2/3 lg:w-3/4 h-1/2 md:h-full">
-          <ChatDisplayByPerson selectedPerson={selectedPerson} />
-        </div>
-      </div>
-    </div>
+    // <div className="h-screen">
+    //   <div className="flex flex-col md:flex-row h-full">
+    //     <div
+    //       className="border-b-2 md:border-b-0 md:border-r-2 border-[#374248]
+    //                     w-full md:w-[8%] lg:w-[6%] xl:w-[4%] 2xl:w-[4%]
+    //                     flex items-center justify-center bg-[#1D1F1F]"
+    //     >
+    //       <SideBar activeTab={activeTab} setActiveTab={setActiveTab} />
+    //     </div>
+    //     <div className="bg-[#161717] w-full md:w-[50%] lg:w-[45%] xl:w-[30%] h-[50vh] md:h-full overflow-y-auto">
+    //       {renderComponent()}
+    //     </div>
+    //     <div className="bg-[#161717] w-full 2xl:w-[75%] md:w-[57%] lg:w-[64%] xl:w-[71%] h-[50vh] md:h-full overflow-y-auto">
+    //       <ChatDisplayByPerson selectedPerson={selectedPerson} />
+    //     </div>
+    //   </div>
+    // </div>
+    <LoadingScreen/>
   );
 };
 
